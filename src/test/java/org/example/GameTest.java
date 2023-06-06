@@ -60,12 +60,14 @@ public class GameTest {
         Card card2 = new Card(CardSuits.HEARTS, CardValues.Seven);
         Card card3 = new Card(CardSuits.CLUBS, CardValues.Seven);
         Card card4 = new Card(CardSuits.CLUBS, CardValues.ACE);
-        Card card5 = new Card(CardSuits.CLUBS, CardValues.TEN);
+        Card card5 = new Card(CardSuits.CLUBS, CardValues.Six);
+        Card card6 = new Card(CardSuits.HEARTS, CardValues.KING);
         player.getHand().add(card);
         player.getHand().add(card2);
         player.getHand().add(card3);
         casino.getHand().add(card4);
         casino.getHand().add(card5);
+        casino.getHand().add(card6);
         String res = game.game(player, casino);
 
         Assertions.assertEquals("НИЧЬЯ", res, "ВНИМАНИЕ!");

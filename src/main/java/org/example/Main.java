@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Player player = new Player("Player", new ArrayList<>());
-        Casino casino = new Casino("Casino", new ArrayList<>());
+
         int countWinPl = 0;
         int countWinCas = 0;
         int countWinNaN = 0;
         
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
+            Player player = new Player("Player", Game.hand());
+            Casino casino = new Casino("Casino", Game.hand());
             Game newGame = new Game(player, casino);
             if (newGame.game(player, casino).equals("НИЧЬЯ")) {
                 countWinNaN++;

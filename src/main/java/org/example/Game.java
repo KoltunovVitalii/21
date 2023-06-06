@@ -20,29 +20,32 @@ public class Game {
 
     }
 
-    public String game(Player player, Casino casino) {
+    public static ArrayList<Card> hand() {
         ArrayList<Card> deck = CardDeck.make();
         CardDeck.miksDeck(deck);
-        int resPl = 0;
-        int resCas = 0;
-
-        while (resPl < 20) {
+        int result = 0;
+        ArrayList<Card> hand = new ArrayList<>();
+        while (result < 19) {
             int indexOfLast = deck.size() - 1;
-            player.getHand().add(deck.get(indexOfLast));
-            resPl += deck.get(indexOfLast).getCardValues().getData();
+            hand.add(deck.get(indexOfLast));
+            result += deck.get(indexOfLast).getCardValues().getData();
             deck.remove(indexOfLast);
         }
 
-        while (resCas < 20) {
-            int indexOfLast = deck.size() - 1;
-            casino.getHand().add(deck.get(indexOfLast));
-            resCas += deck.get(indexOfLast).getCardValues().getData();
-            deck.remove(indexOfLast);
-        }
+        return hand;
+    }
+
+    public String game(Player player, Casino casino) {
+
+        ArrayList<Card> plHand = player.getHand();
+        ArrayList<Card> casHand = casino.getHand();
+
+        int resPl = result(plHand);
+        int resCas = result(casHand);
 
         String result = "НИЧЬЯ";
 
-        if (resPl <= 21 & resCas <= 21) {
+        if (resPl <= 21 && resCas <= 21) {
             if (resPl > resCas) {
                 result = "ВЫЙГРАЛ: ИГРОК";
             } else if (resPl < resCas){
